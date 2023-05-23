@@ -6,6 +6,9 @@ import com.sereda.ecommerce_project.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -13,6 +16,30 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product createProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Override
+    public Optional<Product> getProduct(Long productId) {
+        return productRepository.findById(productId);
+    }
+
+    @Override
+    public List<Product> getProducts() {
+        return productRepository.findAll();
+    }
+
+    @Override
+    public boolean deleteProduct(Long productId) {
+        if(productRepository.existsById(productId)) {
+            productRepository.deleteById(productId);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Product updateProduct(Product product) {
         return productRepository.save(product);
     }
 }
