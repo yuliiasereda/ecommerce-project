@@ -1,5 +1,6 @@
 package com.sereda.ecommerce_project.service.impl;
 
+import com.sereda.ecommerce_project.converter.ProductConverter;
 import com.sereda.ecommerce_project.dto.ProductDto;
 import com.sereda.ecommerce_project.exception.RecordNotFoundException;
 import com.sereda.ecommerce_project.model.Product;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static com.sereda.ecommerce_project.converter.ProductConverter.convertDtoToEntity;
+import static com.sereda.ecommerce_project.converter.ProductConverter.convertEntityToDto;
 
 @Service
 @AllArgsConstructor
@@ -35,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDto> getProducts() {
         return productRepository.findAll()
                 .stream()
-                .map(this::convertEntityToDto)
+                .map(ProductConverter::convertEntityToDto)
                 .toList();
     }
 
@@ -58,29 +62,5 @@ public class ProductServiceImpl implements ProductService {
 
         Product updatedProduct = productRepository.save(product);
         return convertEntityToDto(updatedProduct);
-    }
-
-    private ProductDto convertEntityToDto(Product product){
-        ProductDto productDto = new ProductDto();
-        productDto.setProductId(product.getProductId());
-        productDto.setName(product.getName());
-        productDto.setDescription(product.getDescription());
-        productDto.setBrand(product.getBrand());
-        productDto.setPrice(product.getPrice());
-        productDto.setCreatedAt(product.getCreatedAt());
-        productDto.setUpdatedAt(product.getUpdatedAt());
-        productDto.setAvailability(product.getAvailability());
-        return productDto;
-    }
-
-    private Product convertDtoToEntity(ProductDto productDto){
-        Product product = new Product();
-        product.setName(productDto.getName());
-        product.setDescription(productDto.getDescription());
-        product.setBrand(productDto.getBrand());
-        product.setPrice(productDto.getPrice());
-        product.setCreatedAt(productDto.getCreatedAt());
-        product.setAvailability(productDto.getAvailability());
-        return product;
     }
 }
