@@ -35,4 +35,6 @@ public class Product {
     @CreationTimestamp
     @Column(name = "updated_at", columnDefinition = "datetime")
     private LocalDateTime updatedAt;
+    @Column(name = "availability", nullable = false)
+    private Boolean availability;
 }

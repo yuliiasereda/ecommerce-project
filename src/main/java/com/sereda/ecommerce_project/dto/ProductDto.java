@@ -14,4 +14,5 @@ public class ProductDto {
     private BigDecimal price;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private Boolean availability;
 }
