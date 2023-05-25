@@ -15,4 +15,8 @@ public class ProductDto {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private Boolean availability;
+    private String sku;
+    private String size;
+    private String color;
+    private Integer quantity;
 }

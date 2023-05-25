@@ -14,6 +14,10 @@ public class ProductConverter {
         productDto.setCreatedAt(product.getCreatedAt());
         productDto.setUpdatedAt(product.getUpdatedAt());
         productDto.setAvailability(product.getAvailability());
+        productDto.setSku(product.getSku());
+        productDto.setSize(product.getSize());
+        productDto.setColor(product.getColor());
+        productDto.setQuantity(product.getQuantity());
         return productDto;
     }
 
@@ -25,6 +29,10 @@ public class ProductConverter {
         product.setPrice(productDto.getPrice());
         product.setCreatedAt(productDto.getCreatedAt());
         product.setAvailability(productDto.getAvailability());
+        product.setSku(productDto.getSku());
+        product.setSize(productDto.getSize());
+        product.setColor(productDto.getColor());
+        product.setQuantity(productDto.getQuantity());
         return product;
     }
 }

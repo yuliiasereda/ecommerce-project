@@ -23,6 +23,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto createProduct(ProductDto productDto) {
         productDto.setCreatedAt(LocalDateTime.now());
+        productDto.setAvailability(true);
         Product product = convertDtoToEntity(productDto);
         Product createdProduct = productRepository.save(product);
         return convertEntityToDto(createdProduct);
